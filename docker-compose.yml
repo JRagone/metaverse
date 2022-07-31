@@ -1,0 +1,13 @@
+services:
+  serviceA:
+    build: ./serviceA
+    volumes:
+      - ./serviceA:/app
+  serviceB:
+    build: ./serviceB
+    volumes:
+      - ./serviceB:/app
+  translator:
+    build: ./translator
+    volumes:
+      - ./translator:/app
