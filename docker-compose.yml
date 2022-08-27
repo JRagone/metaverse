@@ -1,13 +1,36 @@
 services:
-  serviceA:
-    build: ./serviceA
+  service_a:
+    build:
+      context: ./serviceA
     volumes:
       - ./serviceA:/app
-  serviceB:
-    build: ./serviceB
+      - /app/node_modules
+    command:
+      - npm
+      - run
+      - dev
+    ports:
+      - "3000:3000"
+  service_b:
+    build:
+      context: ./serviceB
     volumes:
       - ./serviceB:/app
+      - /app/node_modules
+    command:
+      - npm
+      - run
+      - dev
+    ports:
+      - "3001:3001"
   translator:
-    build: ./translator
+    build:
+      context: ./translator
     volumes:
       - ./translator:/app
+    command:
+      - npm
+      - run
+      - dev
+    ports:
+      - "3002:3002"
