@@ -10,4 +10,4 @@ cd min
 npm run start
 ```
 
-Visit universe A at http://localhost:3000 and universe B at http://localhost:3001.
+Visit universe A at http://localhost:3000 and universe B at http://localhost:3001 through the [Min](https://github.com/minbrowser/min) browser.
