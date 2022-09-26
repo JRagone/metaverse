@@ -60,7 +60,7 @@ window.addEventListener('message', async function (e) {
       },
       body: JSON.stringify({
         item,
-        itemUrl: 'http://universe_b:3001/avatar',
+        itemUrl: 'http://universe_a:3000/avatar',
         username,
         targetType
       })

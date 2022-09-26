@@ -11,7 +11,7 @@ import {
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "Service A",
+  title: "Universe A",
   viewport: "width=device-width,initial-scale=1",
 });
 

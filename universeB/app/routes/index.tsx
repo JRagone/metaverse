@@ -1,40 +1,33 @@
-import { json } from "@remix-run/node";
-import { useFetcher, useLoaderData } from "@remix-run/react";
-import { useEffect } from "react";
-
-// export async function loader() {
-//   // const avatarUrl = await getAvatar();
-//   const avatarUrl = await fetch('/app/routes/avatar/john');
-//   const data = {
-//     avatarUrl
-//   }
-//   return json(data);
-// }
-
-// async function getAvatar() {
-//   return 'users/john/avatar.png';
-// }
+import { useState, useEffect } from 'react';
 
 export default function Index() {
   const username = 'john';
-  const fetcher = useFetcher();
+  const [avatarImg, setAvatarImg] = useState(<p>Loading avatar...</p>);
+
+  function capitalizeFirstLetter(string: String) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  function handleMessage(e: MessageEvent<any>) {
+    if (e.data && e.data.message && e.data.message === 'gotItem') {
+      const itemData = e.data.item;
+      setAvatarImg(<img src={itemData} alt="User avatar" style={{ width: "10rem" }} />);
+      console.log("Got response!");
+    }
+  }
 
   useEffect(() => {
-    if (fetcher.type === "init") {
-      fetcher.load(`/avatar/${username}`);
+    window.postMessage({ message: 'getItem', item: 'avatar', targetType: 'jpg', username });
+    window.addEventListener('message', handleMessage)
+
+    return function cleanup () {
+      window.removeEventListener('message', handleMessage, false);
     }
-  }, [fetcher]);
-
-  const avatarUrl = fetcher.data;
-
+  }, []);
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <h1>What's up, John</h1>
-      { fetcher.type === "done" ?
-        <img src={avatarUrl} alt="User avatar"/>
-        :
-        <p>Loading avatar...</p>
-      }
+      <h1>Welcome, {capitalizeFirstLetter(username)}!</h1>
+      {avatarImg}
     </div>
   );
 }
