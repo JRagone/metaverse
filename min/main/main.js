@@ -416,29 +416,3 @@ ipc.on('handoffUpdate', function(e, data) {
 ipc.on('quit', function () {
   app.quit()
 })
-
-ipc.handle('test', async function (e, data) {
-  console.log("TEST!");
-  // console.log(data);
-  // const { item, targetType } = data;
-  // try {
-  //   // const res = await fetch(`http://localhost:3002/translate`, {
-  //   //   method: 'POST',
-  //   //   headers: {
-  //   //     'Accept': 'application/json',
-  //   //     'Content-Type': 'application/json'
-  //   //   },
-  //   //   body: JSON.stringify({
-  //   //     item,
-  //   //     itemUrl: 'http://localhost:3001/avatar',
-  //   //     targetType
-  //   //   })
-  //   // });
-  //   // console.log(res);
-  //   return "RESULT";
-  // } catch (err) {
-  //   console.error(err);
-  //   return "FAILURE";
-  // }
-  return "RESULT";
-})

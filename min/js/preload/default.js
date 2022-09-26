@@ -46,12 +46,6 @@ ipc.on('enterPictureInPicture', function (event, data) {
 })
 
 window.addEventListener('message', async function (e) {
-  console.log(e);
-
-  // if (!e.origin.startsWith('file://')) {
-  //   return
-  // }
-
   if (e.data && e.data.message && e.data.message === 'showCredentialList') {
     ipc.send('showCredentialList')
   }
@@ -66,20 +60,12 @@ window.addEventListener('message', async function (e) {
       },
       body: JSON.stringify({
         item,
-        itemUrl: 'http://service_b:3001/avatar',
+        itemUrl: 'http://universe_b:3001/avatar',
         username,
         targetType
       })
     });
-    console.log(res);
-    console.log(res.body);
     const { data } = await res.json();
-    // console.log(await fetch('https://swapi.dev/api/people/1/'));
-    // const body = "Hi";
-    console.log("Sending test IPC");
-    const result = await ipc.invoke('test', { item, targetType});
-    console.log(`Result: ${result}`);
-    console.log('Posting test-res');
     window.postMessage({ message: 'gotItem', item: data });
   }
 })

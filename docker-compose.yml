@@ -1,9 +1,9 @@
 services:
-  service_a:
+  universe_a:
     build:
-      context: ./serviceA
+      context: ./universeA
     volumes:
-      - ./serviceA:/app
+      - ./universeA:/app
       - /app/node_modules
     command:
       - npm
@@ -11,11 +11,11 @@ services:
       - dev
     ports:
       - "3000:3000"
-  service_b:
+  universe_b:
     build:
-      context: ./serviceB
+      context: ./universeB
     volumes:
-      - ./serviceB:/app
+      - ./universeB:/app
       - /app/node_modules
     command:
       - npm
